@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "rootDir": "src",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src",
+    "src/types",
+    "generated/prisma",
+    "src/middleware",
+    "src/utilities"
+  ],
+  "exclude": ["node_modules", "tmp"]
+}
