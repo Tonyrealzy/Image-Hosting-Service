@@ -58,14 +58,14 @@ router.get("/", async (req, res) => {
     }
 
     const url = getSignedUrl(key);
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Image path in bucket retrieved",
       url,
     });
   } catch (error: any) {
     logger.error(error?.message);
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: error?.message,
     });

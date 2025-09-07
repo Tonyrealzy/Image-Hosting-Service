@@ -65,7 +65,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     });
 
     const url = getSignedUrl(image.storageKey);
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Image uploaded",
       image,
@@ -73,7 +73,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     });
   } catch (error: any) {
     logger.error(error?.message);
-    res.status(500).json({
+    return res.status(500).json({
       status: "error",
       message: error?.message,
     });

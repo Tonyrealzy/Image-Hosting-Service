@@ -1,5 +1,7 @@
 import { Router, Request, Response } from "express";
 import logger from "../utilities/logger";
+import { supabase } from "../repository/supabaseClient";
+import { version } from "os";
 
 const router = Router();
 
@@ -23,13 +25,32 @@ const router = Router();
  *                   example: "ok"
  */
 
-router.get("/", (req: Request, res: Response) => {
-  logger.info("Server is up and running");
-  res.status(200).json({
-    status: "success",
-    message: "Server is up and running",
-    timestamp: new Date().toISOString(),
-  });
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const { data, error } = await supabase.rpc("version");
+    if (error) {
+      logger.error(error);
+      return res.status(500).json({
+        status: "error",
+        message: "Supabase Error",
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    logger.info("Server is up and running");
+    return res.status(200).json({
+      status: "success",
+      message: "Server is up and running",
+      timestamp: new Date().toISOString(),
+      version: data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: "Internal Server Error",
+      timestamp: new Date().toISOString(),
+    });
+  }
 });
 
 export default router;
