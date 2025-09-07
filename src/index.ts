@@ -7,6 +7,7 @@ import { limiter } from "./middleware/rateLimiting";
 import logger from "./utilities/logger";
 import uploadImageRoute from "./routes/uploadImages";
 import fetchImageRoute from "./routes/fetchImages";
+import healthRoute from "./routes/health";
 import { setupSwagger } from "./static/swagger";
 import { cronJob } from "./services/cronJob";
 
@@ -22,6 +23,7 @@ setupSwagger(app);
 
 app.use("/upload", uploadImageRoute);
 app.use("/fetch", fetchImageRoute);
+app.use("/health", healthRoute);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({ status: "error", message: "Route not found" });
