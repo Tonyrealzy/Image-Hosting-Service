@@ -27,7 +27,7 @@ const router = Router();
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const { data, error } = await supabase.rpc("version");
+    const { data, error } = await supabase.from("Image").select("id").limit(1);
     if (error) {
       logger.error(error);
       return res.status(500).json({
@@ -42,7 +42,7 @@ router.get("/", async (req: Request, res: Response) => {
       status: "success",
       message: "Server is up and running",
       timestamp: new Date().toISOString(),
-      version: data,
+      data: data,
     });
   } catch (error) {
     return res.status(500).json({
