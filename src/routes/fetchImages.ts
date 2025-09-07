@@ -1,6 +1,6 @@
 import { Router } from "express";
 import logger from "../utilities/logger";
-import { getSignedUrl } from "../services/fetchImage";
+import { fetchImage, getSignedUrl } from "../services/fetchImage";
 
 const router = Router();
 
@@ -45,6 +45,15 @@ router.get("/", async (req, res) => {
       return res.status(400).json({
         status: "error",
         message: "Missing filename",
+      });
+    }
+
+    const imageUrl = await fetchImage(key);
+    if (!imageUrl) {
+      logger.error("File doesn't exist.");
+      return res.status(404).json({
+        status: "error",
+        message: "File doesn't exist.",
       });
     }
 

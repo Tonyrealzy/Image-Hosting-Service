@@ -24,7 +24,7 @@ model Image {
   width       Int
   height      Int
   bytes       Int
-  storageKey  String
+  storageKey  String    @unique
   visibility  String
   createdAt   DateTime  @default(now())
 }

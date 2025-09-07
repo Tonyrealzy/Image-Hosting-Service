@@ -4,8 +4,13 @@ import { supabase } from "../repository/supabaseClient";
 import { envConfig } from "../utilities/config";
 import logger from "../utilities/logger";
 
-export const fetchImage = (sha256: string) => {
-  return db.image.findUnique({ where: { sha256 } });
+export const fetchImage = (storageKey: string) => {
+  const image = db.image.findUnique({ where: { storageKey } });
+
+  if (!image)
+    throw new AppError(`Image with storageKey ${storageKey} not found.`, 404);
+
+  return image;
 };
 
 export const getImageUrl = (key: string) => {

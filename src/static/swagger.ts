@@ -12,9 +12,12 @@ export const swaggerOptions: swaggerJSDoc.Options = {
         "API for uploading and retrieving images with Supabase + Prisma",
     },
     servers: [
-      { url: "http://localhost:4000", description: "Local server" },
       {
-        url: "https://url-shortener-service-7vhn.onrender.com",
+        url: "http://localhost:4000",
+        description: "Local server",
+      },
+      {
+        url: "https://image-hosting-service.onrender.com",
         description: "Production server",
       },
     ],
