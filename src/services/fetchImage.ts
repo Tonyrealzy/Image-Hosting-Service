@@ -2,6 +2,7 @@ import { AppError } from "../models/appError";
 import db from "../repository/db";
 import { supabase } from "../repository/supabaseClient";
 import { envConfig } from "../utilities/config";
+import logger from "../utilities/logger";
 
 export const fetchImage = (sha256: string) => {
   return db.image.findUnique({ where: { sha256 } });
@@ -22,6 +23,7 @@ export const getPrivateSignedUrl = async (key: string) => {
     .from("images")
     .createSignedUrl(key, Number(envConfig.urlTimeout));
   if (error) {
+    logger.error("Error retrieving signedUrl: ", error?.message);
     throw new AppError(error.message, 500);
   }
 

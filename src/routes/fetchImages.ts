@@ -48,7 +48,7 @@ router.get("/", async (req, res) => {
       });
     }
 
-    const url = await getSignedUrl(key);
+    const url = getSignedUrl(key);
     res.status(200).json({
       status: "success",
       message: "Image path in bucket retrieved",

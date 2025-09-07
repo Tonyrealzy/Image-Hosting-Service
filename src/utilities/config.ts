@@ -8,7 +8,8 @@ export const envConfig = {
   limitRequest: process.env.LIMIT_REQUEST || 50, // limit each IP to 50 requests per windowMs,
   environment: process.env.NODE_ENV || "production",
   databaseUrl: process.env.DATABASE_URL || "",
-  supabaseUrl: process.env.SUPABASE_URL || "",
-  supabaseKey: process.env.SUPABASE_ANON_KEY || "",
+  supabaseUrl: process.env.SUPABASE_URL!,
+  supabaseKey: process.env.SUPABASE_ANON_KEY!,
+  supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY!,
   urlTimeout: process.env.URL_TIMEOUT || 3600,
 };

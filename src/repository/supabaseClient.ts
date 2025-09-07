@@ -3,5 +3,5 @@ import { envConfig } from "../utilities/config";
 
 export const supabase = createClient(
   envConfig.supabaseUrl,
-  envConfig.supabaseKey
+  envConfig.supabaseServiceKey
 );

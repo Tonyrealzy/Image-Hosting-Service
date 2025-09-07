@@ -15,13 +15,14 @@ export const uploadOriginal = async (image: Image) => {
       sha256,
     },
   });
+
   if (existing) {
     logger.error("Duplicate existence, returning existing record.");
     return existing;
   }
 
   const ext = image.filename.split(".").pop()!;
-  const storageKey = `originals/${sha256}.${ext}`;
+  const storageKey = `${sha256}.${ext}`;
   const mime = `image/${ext}`;
 
   await uploadToSupabase({

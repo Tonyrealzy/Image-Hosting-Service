@@ -1,4 +1,5 @@
 import { CorsOptions } from "cors";
+import { AppError } from "../models/appError";
 
 const allowedOrigins = [
   "http://localhost:3000",
@@ -16,7 +17,7 @@ export const corsOptions: CorsOptions = {
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new AppError("Not allowed by CORS", 500));
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],

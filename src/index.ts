@@ -8,6 +8,7 @@ import logger from "./utilities/logger";
 import uploadImageRoute from "./routes/uploadImages";
 import fetchImageRoute from "./routes/fetchImages";
 import { setupSwagger } from "./static/swagger";
+import { cronJob } from "./services/cronJob";
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(errorHandler);
+
+cronJob();
 
 app.listen(envConfig.port, () => {
   logger.info(

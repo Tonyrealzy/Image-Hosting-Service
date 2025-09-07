@@ -64,7 +64,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       visibility: "private",
     });
 
-    const url = await getSignedUrl(image.storageKey);
+    const url = getSignedUrl(image.storageKey);
     res.status(200).json({
       status: "success",
       message: "Image uploaded",
