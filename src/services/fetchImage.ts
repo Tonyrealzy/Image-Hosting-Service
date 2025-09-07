@@ -6,7 +6,6 @@ import logger from "../utilities/logger";
 
 export const fetchImage = (storageKey: string) => {
   const image = db.image.findUnique({ where: { storageKey } });
-
   if (!image)
     throw new AppError(`Image with storageKey ${storageKey} not found.`, 404);
 

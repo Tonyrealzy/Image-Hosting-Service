@@ -58,6 +58,11 @@ src/
  └── utilities/       # Config + logger
 ```
 
+## 📖 API Documentation (Swagger)  
+
+Interactive API docs are available here:  
+👉 [Swagger UI](https://url-shortener-service-7vhn.onrender.com/api/swagger)  
+
 ---
 
 ## 🚀 Getting Started
